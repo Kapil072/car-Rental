@@ -1,0 +1,1 @@
+A web-based platform for renting cars based on user location. Supports individual and corporate accounts, real-time booking, secure payments, and reservation management. Designed for ease of use, scalability, and security.

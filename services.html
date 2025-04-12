@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Services</title>
+    <link rel="stylesheet" href="styless.css">
+</head>
+<body>
+    <header id="site-header">
+        
+        <div class="search-bar">
+            <input type="search" id="site-search" placeholder="Search our site...">
+        </div>
+        <nav>
+          
+        </nav>
+    </header>
+    <main>
+        <h1>Our Services</h1>
+        <p>When the user selects the car then clicks "Book Now," guide them through the booking process. Include steps for selecting rental dates, additional options (e.g., insurance, GPS), and payment details Offer both online payment options (credit card, PayPal) and cash payment options for flexibility. After successful booking, display a confirmation page with a summary of the reservation details. Provide instructions on how the user can pick up the car, including the rental location and key retrieval process.
+            There are basically two different users one in normal person and another one is companies which rent’s the cars in bulk. User can create an account where they asked account for company or an normal user use have to inter the details if company Account then company name required and contact details.
+            </p>
+        <h2>Car Rental Services</h2>
+        <p>a car rental website's backend involves strategically combining technology choices, data management, user experience, and security measures. Key steps include: selecting a backend technology (Node.js, Python, Ruby) to handle server-side logic, establishing a database (MySQL, PostgreSQL, MongoDB) to store user, city, car, and reservation data, implementing secure user authentication, populating the database with city and car information, developing APIs to serve frontend requests, creating a booking system to handle reservations, integrating a payment gateway, implementing notifications, crafting an admin panel, prioritizing security best practices, ensuring robust error handling and logging, conducting thorough testing, documenting backend components, designing for scalability, and using version control for code management and collaboration.</p>
+        <button id="book-now-btn">Book Now</button>
+        <div id="booking-form" style="display: none;">
+            <h2>Booking Form</h2>
+            <form id="booking-form-inner">
+                <label for="car-select">Select Car:</label>
+                <select id="car-select">
+                    <option value="sedan">Sedan</option>
+                    <option value="suv">SUV</option>
+                    <option value="truck">Truck</option>
+                </select>
+                <label for="rental-dates">Rental Dates:</label>
+                <input type="date" id="start-date" name="start-date" required>
+                <input type="date" id="end-date" name="end-date" required>
+                <label for="additional-options">Additional Options:</label>
+                <ul id="additional-options-list">
+                    <li>
+                        <input type="checkbox" id="insurance-option" name="insurance-option">
+                        <label for="insurance-option">Insurance</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="gps-option" name="gps-option">
+                        <label for="gps-option">GPS</label>
+                    </li>
+                </ul>
+                <label for="payment-details">Payment Details:</label>
+                <input type="text" id="payment-details" name="payment-details" placeholder="Enter payment details" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div id="confirmation-page" style="display: none;">
+            <h2>Confirmation Page</h2>
+            <p>Thank you for your booking! Here are the details:</p>
+            <ul id="confirmation-details"></ul>
+            <p>To pick up the car, please go to our rental location at 123 Main St. The keys will be waiting for you at the front desk. If you have any questions, please call us at 555-555-5555.</p>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Car Rental. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

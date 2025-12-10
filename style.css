@@ -1,199 +1,174 @@
-    /* Add the sidebar CSS styles here */
-    .sidebar {
-        margin: 0;
-        padding: 0;
-        width: 200px;
-        background-color: #A1D6E2;
-        position: fixed;
-        height: 100%;
-        overflow: auto;
-    }
-    
+/* ===========================
+     GLOBAL STYLING
+=========================== */
 
-    #site-header {
-        position: fixed;
-        top: 0;
-        bottom: 800px;
-        left: 200px;
-        width: 100%;
-        background-color: #A1D6E2;
-        color: rgb(12, 5, 5);
-        padding: 00px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .animate-text {
-        font-family: 'Brush Script MT', cursive;
-        color: #1995AD;
-        font-size: 3rem;
-        text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
-        animation: slideInFromTop 1s ease-out;
-    }
-    @keyframes slideInFromTop {
-        0% {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
-        100% {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-    
-    .search-bar input[type="search"] {
-        
-        background-color: #faf8f8;
-        border: none;
-        border-radius: 5px;
-        padding: 10px;
-        width: 50%;
-    }
-    
-    #site-search {
-        width: 100%;
-        padding: 2px;
-        
-    }
-    
-    .sidebar a {
-        display: block;
-        color: rgb(4, 3, 3);
-        padding: 16px;
-        text-decoration: none;
-    }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #d8b4fe, #a5f3fc, #fbcfe8);
+    background-size: 400% 400%;
+    animation: gradientMove 12s infinite ease-in-out;
+}
 
-    .sidebar a.active {
-        background-color: #1995AD;
-        color: rgb(24, 0, 0);
-    }
+/* Background animation */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-    .sidebar a:hover:not(.active) {
-        background-color: #ab5c5c;
-        color: rgb(58, 47, 47);
-    }
+/* ===========================
+     SIDEBAR
+=========================== */
 
-    div.content {
-        margin-left: 200px;
-        padding: 1px 16px;
-        height: 1000px;  
-    }
+.sidebar {
+    width: 220px;
+    height: 100%;
+    background: rgba(255,255,255,0.4);
+    backdrop-filter: blur(12px);
+    border-right: 2px solid rgba(255,255,255,0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 30px;
+    box-shadow: 2px 0 15px rgba(0,0,0,0.2);
+}
 
-    @media screen and (max-width: 700px) {
-        .sidebar {
-            width: 100%;
-            height: auto;
-            position: relative;
-        }
-        .sidebar a {float: left;}
-        div.content {margin-left: 0;}
-    }
+.sidebar a {
+    display: block;
+    padding: 16px;
+    margin: 10px;
+    border-radius: 10px;
+    color: #111;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: 0.3s ease-in-out;
+}
 
-    @media screen and (max-width: 400px) {
-        .sidebar a {
-            text-align: center;
-            float: none;
-        }
-    }
+.sidebar a:hover {
+    background: #4f46e5;
+    color: white;
+    transform: translateX(5px);
+}
 
-    /* Add the existing CSS styles here */
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color:#0f0104;
-    }
+.sidebar a.active {
+    background: #1e90ff;
+    color: white;
+}
 
-    .container {
-        font-family: "Courier New", Courier, monospace;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        padding: 20px;
-        
-    }
-    .colorbody{
-        background-color: #D3C5E5;;
-    }
-    .card {
-        background-color: #F1F1F2;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(34, 3, 3, 0.1);
-        width: 300px;
-        margin: 20px;
-        text-align: center;
-        padding: 2px;
-        
-    }
-    .heading{
-        text-align:center;
-        animation: backwards;
+/* ===========================
+     HEADER
+=========================== */
 
+#site-header {
+    position: fixed;
+    top: 0;
+    left: 220px;
+    right: 0;
+    height: 70px;
+    background: rgba(255,255,255,0.4);
+    backdrop-filter: blur(15px);
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    animation: slideDown 1s ease-out;
+}
 
-    }
-    .card h2 {
-        margin-top: 0;
-        margin-bottom: 10px;
-    }
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
 
-    .card p {
-        margin: 10px 0;
-    }
+.animate-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4f46e5;
+    text-shadow: 0px 3px 8px rgba(0,0,0,0.2);
+}
 
-    .card a {
-        display: block;
-        background-color: #4CAF50;
-        border: none;
-        color: rgb(3, 2, 2);
-        padding: 10px 20px;
-        text-decoration: none;
-        border-radius: 5px;
-        margin-top: 10px;
-        
-    }
+/* ===========================
+     SEARCH BAR
+=========================== */
 
-    .card a:hover {
-        background-color: #45a049;
-    }
+.search-bar input[type="search"] {
+    width: 50%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    margin-top: 100px;
+    margin-left: 240px;
+    font-size: 16px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(6px);
+    transition: 0.3s;
+}
 
+.search-bar input[type="search"]:focus {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #4f46e5;
+    outline: none;
+}
 
+/* ===========================
+     CONTENT WRAPPER
+=========================== */
 
+.content {
+    margin-left: 220px;
+    padding: 50px;
+}
 
+/* ===========================
+     CAR CARDS
+=========================== */
 
+.container {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
 
-    #about {
-        background-color: #1995AD;
-        padding: 20px;
-        border-radius: 5px;
-        margin: 20px;
-    }
-    
-    #about h2 {
-        font-size: 2rem;
-        margin-bottom: 10px;
-    }
-    
-    #about p {
-        margin-bottom: 10px;
-    }
-    
-    #about ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    
-    #about li {
-        margin-bottom: 5px;
-    }
-    
-    #about a {
-        color: #0066cc;
-        text-decoration: none;
-    }
-    
-    #about a:hover {
-        text-decoration: underline;
-    }
+.card {
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: 0.4s ease-in-out;
+    transform: translateY(0px);
+}
+
+.card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0px 12px 25px rgba(0,0,0,0.25);
+}
+
+.card img {
+    width: 100%;
+    height: 170px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.card img:hover {
+    transform: scale(1.07);
+}
+
+.card h2 {
+    margin: 5px;
+    font-size: 22px;
+    color: #1f2937;
+}
+
+.card p {
+    margin: 0;
+    font-size: 16px;
+    color: #374151;
+}

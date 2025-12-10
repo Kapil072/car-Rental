@@ -1,0 +1,8 @@
+DROP TABLE reservation_cars;
+DROP TABLE car_availability;
+DROP TABLE reservations;
+DROP TABLE car_cities;
+DROP TABLE cars;
+DROP TABLE cities;
+DROP TABLE user_passwords;
+DROP TABLE users;

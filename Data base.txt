@@ -1,0 +1,118 @@
+-- Create table for users
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    -- Add other user attributes as needed
+);
+
+-- Create table for reservations
+CREATE TABLE reservations (
+    reservation_id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(user_id),
+    car_id INTEGER REFERENCES cars(car_id),
+    pickup_date DATE NOT NULL,
+    return_date DATE NOT NULL,
+    -- Add other reservation attributes as needed
+);
+
+-- Create table for cars
+CREATE TABLE cars (
+    car_id SERIAL PRIMARY KEY,
+    make VARCHAR(50) NOT NULL,
+    model VARCHAR(50) NOT NULL,
+    year INTEGER NOT NULL,
+    color VARCHAR(50),
+    -- Add other car attributes as needed
+);
+
+-- Create table for cities
+CREATE TABLE cities (
+    city_id SERIAL PRIMARY KEY,
+    city_name VARCHAR(100) NOT NULL,
+    country VARCHAR(100) NOT NULL
+);
+
+-- Create table for admins
+CREATE TABLE admins (
+    admin_id SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(100) NOT NULL
+    -- Add other admin attributes as needed
+);
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+3NF-
+
+
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE user_passwords (
+    user_id INTEGER PRIMARY KEY REFERENCES users(user_id),
+    password_hash VARCHAR(100) NOT NULL,
+    salt VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE cities (
+    city_id SERIAL PRIMARY KEY,
+    city_name VARCHAR(100) NOT NULL,
+    country VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE cars (
+    car_id SERIAL PRIMARY KEY,
+    make VARCHAR(50) NOT NULL,
+    model VARCHAR(50) NOT NULL,
+    year INTEGER NOT NULL,
+    availability BOOLEAN DEFAULT TRUE
+);
+
+
+CREATE TABLE car_cities (
+    car_id INTEGER,
+    city_id INTEGER,
+    city_name VARCHAR(100) NOT NULL,
+    PRIMARY KEY (car_id, city_id),
+    FOREIGN KEY (car_id) REFERENCES cars(car_id),
+    FOREIGN KEY (city_id) REFERENCES cities(city_id)
+);
+
+
+CREATE TABLE reservations (
+    reservation_id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(user_id),
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    status VARCHAR(20) DEFAULT 'Pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE reservation_cars (
+    reservation_id INTEGER REFERENCES reservations(reservation_id),
+    car_id INTEGER REFERENCES cars(car_id),
+    PRIMARY KEY (reservation_id, car_id)
+);
+
+CREATE TABLE car_availability (
+    availability_id SERIAL PRIMARY KEY,
+    car_id INTEGER REFERENCES cars(car_id),
+    city_id INTEGER REFERENCES cities(city_id),
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    available BOOLEAN DEFAULT TRUE,
+    CONSTRAINT valid_availability_dates CHECK (start_date <= end_date),
+    CONSTRAINT unique_availability UNIQUE (car_id, city_id, start_date, end_date)
+);
